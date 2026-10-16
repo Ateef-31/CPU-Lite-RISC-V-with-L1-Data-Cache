@@ -1,0 +1,25 @@
+
+current_design CPU_LITE_TOP
+
+clock -name clk_fast \
+      -domain d1 \
+      -period 4 \
+      -tag CLOCK_DOMAIN_1 \
+      -edge {0 2}
+
+clock -name clk_slow \
+      -domain d2 \
+      -period 18 \
+      -tag CLOCK_DOMAIN_2 \
+      -edge {0 9}
+
+reset -name rst_fast_n -value 0
+reset -name rst_slow_n -value 0
+
+input -name inst_from_imem -clock clk_fast
+input -name mem_rdata -clock clk_slow
+
+output -name pc_to_imem -clock clk_fast
+output -name mem_addr -clock clk_slow
+output -name mem_wdata -clock clk_slow
+output -name mem_wen -clock clk_slow
